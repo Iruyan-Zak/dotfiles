@@ -1,0 +1,54 @@
+function cdls() {
+    \cd "$@" && ls
+}
+#alias cd=cdls
+
+function mcdir() {
+    mkdir -p $1;
+    cd $1;
+    }
+
+alias apins='sudo apt-get install'
+alias apgrade='sudo apt-get upgrade'
+alias apdate='sudo apt-get update'
+alias aprem='sudo apt-get remove'
+alias aptsync='apdate && apgrade -y && sudo apt-get autoremove && sudo apt-get autoclean'
+
+alias open=xdg-open
+
+alias su='sudo su -l -p'
+
+alias la='ls -a'
+alias ll='ls -hlu'
+
+alias gcc='gcc -std=c99'
+alias g++='g++ -std=c++14 -Wall'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias mkdir='mkdir -p'
+
+# sudo の後のコマンドでエイリアスを有効にする
+alias sudo='sudo '
+
+# グローバルエイリアス
+alias -g L='| less'
+alias -g G='| grep'
+alias -g B=' 2>&1 | : &'
+
+alias chrome='google-chrome-stable'
+
+# C で標準出力をクリップボードにコピーする
+# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
+if which pbcopy >/dev/null 2>&1 ; then
+# Mac
+alias -g C='| pbcopy'
+elif which xsel >/dev/null 2>&1 ; then
+# Linux
+alias -g C='| xsel --input --clipboard'
+elif which putclip >/dev/null 2>&1 ; then
+# Cygwin
+alias -g C='| putclip'
+fi
+

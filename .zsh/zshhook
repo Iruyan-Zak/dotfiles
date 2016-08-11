@@ -1,0 +1,22 @@
+check_pyvenv() {
+  if [[ -n "$VIRTUAL_ENV" ]];
+  then
+    case "$(pwd)" in
+      $VIRTUAL_ENV* ) ;; # In venv
+      *             ) deactivate ;;
+    esac
+  elif [[ -r 'bin/activate' ]];
+  then
+    source 'bin/activate'
+  elif [[ -r 'venv/bin/activate' ]];
+  then
+    source 'venv/bin/activate'
+  fi
+}
+
+chpwd() {
+    check_pyvenv
+}
+
+check_pyvenv
+

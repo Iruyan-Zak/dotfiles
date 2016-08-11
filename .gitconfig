@@ -1,0 +1,72 @@
+[core]
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
+	pager = view
+[web]
+	browser = google-chrome
+[push]
+	default = current
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[pager]
+	log = less
+	show = less
+	diff = less
+[alias]
+    co = checkout
+    cob = checkout -b
+    s = status
+    a = add
+	aa = add .
+    c = commit
+    cm = commit -m
+    b = branch
+    br = branch -r
+    pso = push origin
+    psof = push -f origin
+    plo = pull origin
+    plom = pull origin master
+    l = log
+	d = diff
+	dca = diff --cached
+	st = stash
+	pop = stash pop
+	r = rebase
+	ri = rebase -i
+	rco = rebase --continue
+	rab = rebase --abort
+	rmrca = rm -r --cached
+
+	amend = commit --amend -C HEAD
+	reward = commit --amend -c HEAD
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	logg = log --stat --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cr %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
+    mergelog = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
+    history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
+    unmerged = !git --no-pager diff --name-only --diff-filter=U
+    sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
+	lbd = !for i in {1..$1}\
+		do\
+		git diff HEAD~ HEAD\
+		git checkout HEAD~\
+		done
+
+	k = !gitk&
