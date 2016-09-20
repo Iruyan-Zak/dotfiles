@@ -17,5 +17,9 @@ set sidescroll=1      " 左右スクロールは一文字づつ行う
 
 set lazyredraw        " マクロなどを実行中は描画を中断
 
+set foldmethod=marker
+set splitright
+set splitbelow
+
 syntax on " シンタックスカラーリングオン
 

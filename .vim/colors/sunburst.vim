@@ -75,10 +75,10 @@ exe 'hi Normal ctermfg='.s:T_Alabaster.' guifg='.s:G_Alabaster.' guibg='.s:G_Bla
 exe 'hi ColorColumn guibg='.s:G_CodGray
 exe 'hi Cursor guibg=#A7A7A7'
 exe 'hi CursorLine guibg='.s:G_CodGray
-hi clear MatchParen
-exe 'hi MatchParen cterm=underline gui=underline'
-hi clear Search
-exe 'hi Search cterm=underline gui=underline'
+" hi clear MatchParen
+" exe 'hi MatchParen cterm=underline gui=underline'
+" hi clear Search
+" exe 'hi Search cterm=underline gui=underline'
 exe 'hi Visual ctermbg='.s:T_Shark.' guibg='.s:G_Shark
 
 " Base vim syntax highlighting

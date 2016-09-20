@@ -42,17 +42,28 @@ NeoBundle 'scrooloose/syntastic'
 
 " Complete
 if has('lua')
-    NeoBundle 'Shougo/neocomplete.vim'
-    NeoBundle 'Shougo/neosnippet.vim'
-    NeoBundle 'Shougo/neosnippet-snippets'
+"    NeoBundle 'Shougo/neocomplete.vim'
+"    NeoBundle 'Shougo/neosnippet.vim'
+"    NeoBundle 'Shougo/neosnippet-snippets'
 else
-    NeoBundle 'Shougo/neocomplcache.vim'
+    " NeoBundle 'Shougo/neocomplcache.vim'
 endif
 call neobundle#end()
 
 NeoBundleCheck
 
 let g:seiya_auto_enable = !has('gui_running')
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=2
+" 自動カラー無効
+let g:indent_guides_auto_colors=0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+" ガイドの幅
+let g:indent_guides_guide_size = 1
 
-source ~/.vim/plugin.complete.vimrc
+" source ~/.vim/plugin.complete.vimrc
 

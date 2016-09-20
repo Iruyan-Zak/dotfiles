@@ -37,6 +37,7 @@ alias -g L='| less'
 alias -g G='| grep'
 alias -g B=' 2>&1 | : &'
 
+alias -g S='| iconv -f CP932 -t UTF8'
 alias chrome='google-chrome-stable'
 
 # C で標準出力をクリップボードにコピーする

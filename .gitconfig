@@ -63,6 +63,7 @@
     history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
     unmerged = !git --no-pager diff --name-only --diff-filter=U
     sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
+    discard-local = fetch origin && reset --hard origin/master
 	lbd = !for i in {1..$1}\
 		do\
 		git diff HEAD~ HEAD\
