@@ -1,20 +1,27 @@
-function cdls() {
-    \cd "$@" && ls
-}
-#alias cd=cdls
-
-function mcdir() {
-    mkdir -p $1;
-    cd $1;
-    }
+# OS 別の設定
+case ${OSTYPE} in
+darwin*)
+# Mac 用の設定
+export CLICOLOR=1
+alias ls='ls -G -F'
+;;
+linux*)
+# Linux 用の設定
+alias ls='ls -F --color=auto'
+alias open=xdg-open
 
 alias apins='sudo apt-get install'
 alias apgrade='sudo apt-get upgrade'
 alias apdate='sudo apt-get update'
 alias aprem='sudo apt-get remove'
 alias aptsync='apdate && apgrade -y && sudo apt-get autoremove && sudo apt-get autoclean'
+;;
+esac
 
-alias open=xdg-open
+function mcdir() {
+    mkdir -p $1;
+    cd $1;
+    }
 
 alias su='sudo su -l -p'
 
@@ -28,6 +35,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias mkdir='mkdir -p'
+alias chrome='google-chrome-stable'
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
@@ -38,18 +46,4 @@ alias -g G='| grep'
 alias -g B=' 2>&1 | : &'
 
 alias -g S='| iconv -f CP932 -t UTF8'
-alias chrome='google-chrome-stable'
-
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-# Mac
-alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-# Linux
-alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-# Cygwin
-alias -g C='| putclip'
-fi
 

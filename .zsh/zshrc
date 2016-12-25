@@ -112,22 +112,8 @@ setopt extended_glob
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 bindkey '^R' history-incremental-pattern-search-backward
 
-
-
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-darwin*)
-#Mac用の設定
-export CLICOLOR=1
-alias ls='ls -G -F'
-;;
-linux*)
-#Linux用の設定
-alias ls='ls -F --color=auto'
-;;
-esac
-
+LOCAL_PATH=$HOME/.local/bin$(find $HOME/bin -type d -or -type l |  sed -ze 's/\([^\n]*\)\n/:\1/g')
+export PATH=$PATH:$LOCAL_PATH
 
 ########################################
 source $ZDOTDIR/alias
@@ -136,5 +122,3 @@ if [ -e $ZDOTDIR/zshrc.local ]; then
     source $ZDOTDIR/zshrc.local
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
