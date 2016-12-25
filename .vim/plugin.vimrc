@@ -15,25 +15,25 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Visual customize
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'miyakogi/seiya.vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+" NeoBundle 'nanotech/jellybeans.vim' " カラースキームテーマ
+" NeoBundle 'miyakogi/seiya.vim' " JellyBeans(↑) で背景が不透明になるのを防ぐ
+NeoBundle 'itchyny/lightline.vim' " 下部ステータスラインに色がつく
+NeoBundle 'bronson/vim-trailing-whitespace' " 文末の空白を赤く表示
+NeoBundle 'nathanaelkane/vim-indent-guides' " インデントを縞模様で見やすく
 
 " Edit support
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'Townk/vim-autoclose' " カッコを自動で閉じる。賢く。
+NeoBundle 'ConradIrwin/vim-bracketed-paste' " 挿入モードでクリップボード貼り付けしても平和
+NeoBundle 'tomtom/tcomment_vim' " Ctrl-/ を2回押してみ(Normal/Insert/Visual)
 
 " Tool
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'bufferlist.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kana/vim-submode'
+NeoBundle 'scrooloose/nerdtree' " ファイラ機能 Ctrl-E
+NeoBundle 'bufferlist.vim' " バッファリスト Ctrl-T
+NeoBundle 'tpope/vim-fugitive' " Vim から Git を便利に触れる
+NeoBundle 'kana/vim-submode' " Submode を使ってキーバインドを便利に see also 'binding.vimrc'
 
 " Syntax
-NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic' " 構文チェッカ
 " NeoBundle 'othree/html5.vim'
 " NeoBundle 'hail2u/vim-css3-syntax'
 " NeoBundle 'jelera/vim-javascript-syntax'
