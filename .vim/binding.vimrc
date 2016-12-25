@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 " 表示行単位で移動
 noremap j gj
 noremap k gk
@@ -10,8 +12,18 @@ inoremap OB <Down>
 inoremap OC <Right>
 inoremap OD <Left>
 
+" Copy and paste to os clipboard
+nmap <leader>y "*y
+vmap <leader>y "*y
+nmap <leader>d "*d
+vmap <leader>d "*d
+nmap <leader>p "*p
+vmap <leader>p "*p
+
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
 vnoremap v $h
-vnoremap * "zy:let @/ = @z<CR>n
 inoremap jj <Esc>
 
 nmap <silent> gh :nohlsearch<CR>
@@ -22,9 +34,18 @@ nnoremap <F12> :e $HOME/.vimrc<CR>
 nnoremap t <Nop>
 
 " ウインドウ作成
-nnoremap ts :<C-u>sp<CR>
-nnoremap tv :<C-u>vs<CR>
 nmap tf tvtlgf
+
+nnoremap tH :leftabove  vnew<CR>
+nnoremap tJ :rightbelow  new<CR>
+nnoremap tK :leftabove   new<CR>
+nnoremap tL :rightbelow vnew<CR>
+
+nnoremap TH :leftabove  vnew<CR>
+nnoremap TJ :rightbelow  new<CR>
+nnoremap TK :leftabove   new<CR>
+nnoremap TL :rightbelow vnew<CR>
+
 " カレントウインドウを切り替え
 nnoremap tj <C-w>j
 nnoremap tk <C-w>k
@@ -69,12 +90,9 @@ nnoremap tq :<C-u>q<CR>
 nnoremap tc :<C-u>bd<CR>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-nmap <silent> <C-T> :call BufferList()<CR>
+" nmap <silent> <C-t> :call BufferList()<CR>
 
-nnoremap TT :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
-nnoremap TT :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
-nnoremap TL :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap TJ :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+" nnoremap TT :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
+" nnoremap TL :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+" nnoremap TJ :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
-nnoremap Y "+y
-nnoremap YY "+yy

@@ -17,7 +17,11 @@ set sidescroll=1      " 左右スクロールは一文字づつ行う
 
 set lazyredraw        " マクロなどを実行中は描画を中断
 
-set foldmethod=marker
+set foldmethod=indent
+set foldnestmax=5
+set foldlevelstart=99
+set foldcolumn=0
+
 set splitright
 set splitbelow
 

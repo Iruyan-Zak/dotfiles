@@ -28,12 +28,12 @@ NeoBundle 'tomtom/tcomment_vim' " Ctrl-/ を2回押してみ(Normal/Insert/Visua
 
 " Tool
 NeoBundle 'scrooloose/nerdtree' " ファイラ機能 Ctrl-E
-NeoBundle 'bufferlist.vim' " バッファリスト Ctrl-T
+" NeoBundle 'bufferlist.vim' " バッファリスト Ctrl-T
 NeoBundle 'tpope/vim-fugitive' " Vim から Git を便利に触れる
 NeoBundle 'kana/vim-submode' " Submode を使ってキーバインドを便利に see also 'binding.vimrc'
 
 " Syntax
-NeoBundle 'scrooloose/syntastic' " 構文チェッカ
+" NeoBundle 'scrooloose/syntastic' " 構文チェッカ
 " NeoBundle 'othree/html5.vim'
 " NeoBundle 'hail2u/vim-css3-syntax'
 " NeoBundle 'jelera/vim-javascript-syntax'
