@@ -1,8 +1,7 @@
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/.gitignore
-	pager = view
+	pager = less
 [web]
 	browser = google-chrome
 [push]
@@ -30,29 +29,32 @@
 	show = less
 	diff = less
 [alias]
-    co = checkout
-    cob = checkout -b
-    s = status
     a = add
 	aa = add .
-    c = commit
-    cm = commit -m
     b = branch
     br = branch -r
-    pso = push origin
-    psof = push -f origin
-    plo = pull origin
-    plom = pull origin master
-    l = log
+    c = commit
+    cm = commit -m
+    co = checkout
+    cob = checkout -b
 	d = diff
 	dca = diff --cached
-	st = stash
-	pop = stash pop
+    f = fetch
+    l = log
+    m = merge
+    plo = pull origin
+    plom = pull origin master
+    pop = stash pop
+    psode = push --delete origin
+    pso = push origin
+    psof = push -f origin
 	r = rebase
 	ri = rebase -i
 	rco = rebase --continue
 	rab = rebase --abort
 	rmrca = rm -r --cached
+    s = status
+	st = stash
 
 	amend = commit --amend -C HEAD
 	reward = commit --amend -c HEAD
@@ -63,7 +65,8 @@
     history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
     unmerged = !git --no-pager diff --name-only --diff-filter=U
     sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
-    discard-local = fetch origin && reset --hard origin/master
+    discard-local = !git fetch origin && git reset --hard origin/master
+    clone-rev = clone --depth=1 -b
 	lbd = !for i in {1..$1}\
 		do\
 		git diff HEAD~ HEAD\
