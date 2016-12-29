@@ -6,4 +6,5 @@ set shellslash              " Windowsでディレクトリパスの区切り文�
 " set mouse=a " マウスの入力を受け付ける
 set visualbell t_vb= "ビープ音すべてを無効にする
 
+set timeoutlen=2000 " <Leader> キーなどの待機時間
 

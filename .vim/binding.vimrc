@@ -12,14 +12,17 @@ inoremap OB <Down>
 inoremap OC <Right>
 inoremap OD <Left>
 
-" Copy and paste to os clipboard
+" OS のクリップボードを使った切り貼り
 nmap <leader>y "*y
 vmap <leader>y "*y
 nmap <leader>d "*d
 vmap <leader>d "*d
 nmap <leader>p "*p
 vmap <leader>p "*p
+nmap <leader>P "*P
+vmap <leader>P "*P
 
+" カーソル下単語検索
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
@@ -27,24 +30,37 @@ vnoremap v $h
 inoremap jj <Esc>
 
 nmap <silent> gh :nohlsearch<CR>
+nnoremap <C-s> :VimShell<CR>
 nnoremap <F12> :e $HOME/.vimrc<CR>
 
+" ファイラ切り替え
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" 爆速カーソル移動
+nmap m  <Plug>(easymotion-s2)
+nmap g/ <Plug>(easymotion-sn)
+xmap g/ <Plug>(easymotion-sn)
+omap g/ <Plug>(easymotion-tn)
 
 """ From http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+" ウインドウ・バッファ・タブの処理を "t + <何か>" に当て直しました
 nnoremap t <Nop>
 
 " ウインドウ作成
-nmap tf tvtlgf
+nnoremap tf :rightbelow vs<CR>gf
+nnoremap tF :rightbelow sp<CR>gf
+nnoremap tb :leftabove  vs<CR>gf
+nnoremap tB :leftabove  sp<CR>gf
 
-nnoremap tH :leftabove  vnew<CR>
-nnoremap tJ :rightbelow  new<CR>
-nnoremap tK :leftabove   new<CR>
-nnoremap tL :rightbelow vnew<CR>
+nnoremap tH :leftabove  vs<CR>
+nnoremap tJ :rightbelow sp<CR>
+nnoremap tK :leftabove  sp<CR>
+nnoremap tL :rightbelow vs<CR>
 
-nnoremap TH :leftabove  vnew<CR>
-nnoremap TJ :rightbelow  new<CR>
-nnoremap TK :leftabove   new<CR>
-nnoremap TL :rightbelow vnew<CR>
+nnoremap TH :leftabove  vs<CR>
+nnoremap TJ :rightbelow sp<CR>
+nnoremap TK :leftabove  sp<CR>
+nnoremap TL :rightbelow vs<CR>
 
 " カレントウインドウを切り替え
 nnoremap tj <C-w>j
@@ -81,18 +97,10 @@ nnoremap tP gT
 nnoremap tr gT
 
 " バッファ切り替え
-nnoremap tb :b#<CR>
 nnoremap tn :<C-u>bn<CR>
 nnoremap tp :<C-u>bp<CR>
 
 " クローズ
-nnoremap tq :<C-u>q<CR>
-nnoremap tc :<C-u>bd<CR>
-
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-" nmap <silent> <C-t> :call BufferList()<CR>
-
-" nnoremap TT :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
-" nnoremap TL :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-" nnoremap TJ :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap tq :<C-u>bdelete<CR>
+nnoremap tc :<C-u>Bdelete<CR>
 

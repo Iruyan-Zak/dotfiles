@@ -1,0 +1,246 @@
+# パッケージリスト
+
+_comment = "常時読み込み" ## {{{
+
+    ### dein.vim です。
+    [[plugins]]
+    repo = 'Shougo/dein.vim'
+
+    ### いろんなプラグインが非同期実行に対応します。
+    [[plugins]]
+    repo = 'Shougo/vimproc.vim'
+    hook_post_update = '''
+        if dein#util#_is_windows()
+            let cmd = 'tools\\update-dll-mingw'
+        elseif dein#util#_is_cygwin()
+            let cmd = 'make -f make_cygwin.mak'
+        elseif executable('gmake')
+            let cmd = 'gmake'
+        else
+            let cmd = 'make'
+        endif
+        let g:dein#plugin.build = cmd
+    '''
+
+    ### 下部ステータスラインに色がつきます。
+    [[plugins]]
+    repo = 'itchyny/lightline.vim'
+    depends = ['fugitive']
+    hook_add = '''
+        let g:lightline = {
+            \ 'mode_map': {'c': 'NORMAL'},
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+            \ },
+            \ 'component_function': {
+            \   'modified': 'LightlineModified',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'filetype': 'LightlineFiletype',
+            \   'fileencoding': 'LightlineFileencoding',
+            \   'mode': 'LightlineMode'
+            \ }
+            \ }
+
+            function! LightlineModified()
+                return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+            endfunction
+
+            function! LightlineReadonly()
+                return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+            endfunction
+
+            function! LightlineFilename()
+                return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                    \    &ft == 'unite' ? unite#get_status_string() :
+                    \    &ft == 'vimshell' ? vimshell#get_status_string() :
+                    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                    \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+            endfunction
+
+            function! LightlineFugitive()
+                if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                    return fugitive#head()
+                else
+                    return ''
+                endif
+            endfunction
+
+            function! LightlineFileformat()
+                return winwidth(0) > 70 ? &fileformat : ''
+            endfunction
+
+            function! LightlineFiletype()
+                return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+            endfunction
+
+            function! LightlineFileencoding()
+                return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+            endfunction
+
+            function! LightlineMode()
+                return winwidth(0) > 60 ? lightline#mode() : ''
+        endfunction
+    '''
+
+    ### 文末の空白を赤く表示します。
+    [[plugins]]
+    repo = 'bronson/vim-trailing-whitespace'
+
+    ### インデントが縞模様で見やすくなります。
+    [[plugins]]
+    repo = 'nathanaelkane/vim-indent-guides'
+    hook_add = '''
+        let g:indent_guides_enable_on_vim_startup=1
+        " ガイドをスタートするインデントの量
+        let g:indent_guides_start_level=2
+        " 自動カラー無効
+        let g:indent_guides_auto_colors=0
+        " 奇数番目のインデントの色
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+        " 偶数番目のインデントの色
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+        " ガイドの幅
+        let g:indent_guides_guide_size = 1
+    '''
+
+    ### Vim から Git を便利に触れるようになります。 lightline が少しリッチになります。
+    [[plugins]]
+    repo = 'tpope/vim-fugitive'
+
+    ### キーバインドを便利にまとめる Submode が使えるようになります。
+    ### 'binding.vimrc' 内の "submode#" を含むバインディングに影響します。
+    [[plugins]]
+    repo = 'kana/vim-submode'
+
+    ### Yank とか Delete の範囲指定を {op}ai で指定できるようになります。
+    [[plugins]]
+    repo = 'michaeljsmith/vim-indent-object'
+
+    ### INSERT モードでの OS キー貼り付けがうまくいきます。
+    [[plugins]]
+    repo = 'ConradIrwin/vim-bracketed-paste'
+
+## }}}
+
+_comment = "条件付き読み込み"  ## {{{
+
+    ### () とか "" とかが自動で閉じられます。
+    [[plugins]]
+    repo = 'cohama/lexima.vim'
+    on_event = ['InsertEnter']
+
+    ### <C-/><C-/> でコメント切り替えできます。
+    [[plugins]]
+    repo = 'tomtom/tcomment_vim'
+    on_map = ['<C-_><C-_>']
+
+    ### <C-E> でファイラが開けます。
+    [[plugins]]
+    repo = 'scrooloose/nerdtree'
+    on_map = ['Ctrl-E']
+
+    ### <Tab> だけで補完が得られます。
+    [[plugins]]
+    repo = 'ervandew/supertab'
+    on_event = ['InsertEnter']
+    on_map = ['<Tab>']
+    hook_source = '''
+    if has("gui_running")
+        imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+    else " no gui
+        if has("unix")
+            inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+        endif
+    endif
+    '''
+
+    ### Vim 上でシェルを起動することができます。
+    [[plugins]]
+    repo = 'Shougo/vimshell'
+    om_cmd = ['VimShell']
+    depends = ['Shougo/vimproc']
+
+    ### Neomake コマンドが使えるようになります。
+    [[plugins]]
+    repo = 'neomake/neomake'
+    on_cmd = ['Neomake']
+    hook_source = '''
+        let g:neomake_open_list = 2
+    '''
+
+    ### 便利なバッファクローズ機能が提供されます。
+    [[plugins]]
+    repo = 'moll/vim-bbye'
+    on_cmd = ['Bdelete']
+
+    ### <C-P> で幸せになります。
+    [[plugins]]
+    repo ='ctrlpvim/ctrlp.vim'
+    on_map = ['<C-p>']
+
+    ### <m> から高速なカーソル移動ができます。
+    [[plugins]]
+    repo = 'easymotion/vim-easymotion'
+    hook_add = '''
+        let g:EasyMotion_do_mapping = 0
+        let g:EasyMotion_enter_jump_first = 1
+    '''
+    on_map = ['<Plug>(easymotion-s2)', '<Plug>(easymotion-sn)', '<Plug>(easymotion-tn)']
+
+    ### ctags の情報からドキュメントアウトラインを表示します。
+    [[plugins]]
+    repo = 'majutsushi/tagbar'
+    on_cmd = ['TagbarToggle']
+
+## }}}
+
+_comment = "ファイルタイプ読み込み"  ## {{{
+
+    ### TOML ファイルの syntax プラグインです。
+    [[plugins]]
+    repo = 'cespare/vim-toml'
+    on_ft = ['toml']
+
+    ## !! Haskell 用のプラグインを動かすには stack とパッケージがいくつか必要です！
+    ## http://qiita.com/igrep/items/278316669fbbd6dd124d
+
+    ### Haskell ファイルの syntax プラグインです。
+    [[plugins]]
+    repo = 'neovimhaskell/haskell-vim'
+    on_ft = ['haskell']
+
+    ### GHC-mod の力が借りられるようになります。
+    [[plugins]]
+    repo = 'eagletmt/ghcmod-vim'
+    on_ft = ['haskell']
+    hook_source = '''
+        let g:ghcmod_use_basedir = getcwd()
+        let g:neomake_haskell_ghc_mod_args = '-g-Wall'
+    '''
+
+    ### Haskell 用のオムニ補完を提供します。
+    [[plugins]]
+    repo = 'eagletmt/neco-ghc'
+    on_ft = ['haskell']
+    hook_source = '''
+        let g:necoghc_enable_detailed_browse = 1
+        let g:haskellmode_completion_ghc = 0
+        au FileType haskell setlocal omnifunc=necoghc#omnifunc
+    '''
+
+    ### Hoogle 先生に相談できるようになります。
+    [[plugins]]
+    repo = 'Twinside/vim-hoogle'
+    on_ft = ['haskell']
+
+    ### Lint がかけられます。
+    [[plugins]]
+    repo = 'mpickering/hlint-refactor-vim'
+    on_ft = ['haskell']
+
+## }}}
+
