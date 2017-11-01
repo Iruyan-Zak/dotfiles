@@ -22,10 +22,6 @@ vmap <leader>p "*p
 nmap <leader>P "*P
 vmap <leader>P "*P
 
-" カーソル下単語検索
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
 vnoremap v $h
 inoremap jj <Esc>
 

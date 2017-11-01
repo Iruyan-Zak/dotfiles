@@ -6,6 +6,5 @@ source ~/.vim/binding.vimrc
 source ~/.vim/edit.vimrc
 source ~/.vim/file.vimrc
 source ~/.vim/filetype.vimrc
-source ~/.vim/functions.vimrc
 
 filetype indent plugin on
