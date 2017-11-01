@@ -113,10 +113,11 @@ setopt extended_glob
 bindkey '^R' history-incremental-pattern-search-backward
 
 LOCAL_PATH=$HOME/.local/bin$(find $HOME/bin -type d -or -type l |  sed -ze 's/\([^\n]*\)\n/:\1/g')
-export PATH=$PATH:$LOCAL_PATH
+export PATH=$LOCAL_PATH:$PATH
 
 ########################################
 source $ZDOTDIR/alias
+source $ZDOTDIR/commands
 source $ZDOTDIR/zshhook
 if [ -e $ZDOTDIR/zshrc.local ]; then
     source $ZDOTDIR/zshrc.local

@@ -3,7 +3,7 @@ check_pyvenv() {
   then
     case "$(pwd)" in
       $VIRTUAL_ENV* ) ;; # In venv
-      *             ) deactivate ;;
+      *             ) source deactivate ;;
     esac
   elif [[ -r 'bin/activate' ]];
   then
