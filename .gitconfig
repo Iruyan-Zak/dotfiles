@@ -37,6 +37,9 @@
     cm = commit -m
     co = checkout
     cob = checkout -b
+    cp = cherry-pick
+    cpab = cherry-pick --abort
+    cpco = cherry-pick --continue
 	d = diff
 	dca = diff --cached
     f = fetch
