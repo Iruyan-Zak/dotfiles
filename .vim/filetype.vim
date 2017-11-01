@@ -70,9 +70,9 @@ function! Def_haskell()
     nnoremap <silent> <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
     nnoremap <leader>tg :!codex update --force<CR>:call system("git-hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
     nnoremap <silent> <leader>hh :Hoogle<CR>
-    nnoremap <leader>hH :Hoogle
+    nnoremap <leader>hH :Hoogle 
     nnoremap <silent> <leader>hi :HoogleInfo<CR>
-    nnoremap <leader>hI :HoogleInfo
+    nnoremap <leader>hI :HoogleInfo 
     nnoremap <silent> <leader>hz :HoogleClose<CR>
     nnoremap <silent> <leader><CR> :noh<CR>:GhcModTypeClear<CR>
     nnoremap <silent> <leader>ht :GhcModType<CR>
