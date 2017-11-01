@@ -8,7 +8,7 @@ set showcmd             " 入力中のコマンドを表示
 set laststatus=2        " ステータスラインを常時表示
 set number              " 行番号表示
 
-set nowrap                " 画面幅で折り返す
+set nowrap              " 画面幅で折り返さない(バイナリなどを開いて固まらないように)
 set ambiwidth=double    " UTF-8の□や○でカーソル位置がずれないようにする
 
 set scrolloff=8         " 行送り
@@ -17,7 +17,7 @@ set sidescroll=1        " 左右スクロールは一文字づつ行う
 
 set lazyredraw          " マクロなどを実行中は描画を中断
 
-set foldmethod=indent   " インデントによって折りたたみます
+" set foldmethod=indent   " インデントによって折りたたみます
 set foldnestmax=5       " 折りたたみは5重が限界
 set foldlevelstart=99   " ファイルを開いた時には折りたたまない
 

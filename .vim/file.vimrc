@@ -11,5 +11,3 @@ set termencoding=utf-8  " 全体的に UTF-8 を使う
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp
 
-set autochdir   " バッファを変えたら cd
-

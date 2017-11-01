@@ -13,14 +13,14 @@ inoremap OC <Right>
 inoremap OD <Left>
 
 " OS のクリップボードを使った切り貼り
-nmap <leader>y "*y
-vmap <leader>y "*y
-nmap <leader>d "*d
-vmap <leader>d "*d
-nmap <leader>p "*p
-vmap <leader>p "*p
-nmap <leader>P "*P
-vmap <leader>P "*P
+nmap <leader>y "+y
+vmap <leader>y "+y
+nmap <leader>d "+d
+vmap <leader>d "+d
+nmap <leader>p "+p
+vmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>P "+P
 
 vnoremap v $h
 inoremap jj <Esc>
