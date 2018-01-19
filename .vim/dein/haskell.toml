@@ -1,0 +1,46 @@
+## !! Haskell 用のプラグインを動かすには stack とパッケージがいくつか必要です！
+## http://qiita.com/igrep/items/278316669fbbd6dd124d
+
+### いろんなプラグインが非同期実行に対応します。
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+### Haskell ファイルの syntax プラグインです。
+[[plugins]]
+repo = 'neovimhaskell/haskell-vim'
+
+### GHC-mod の力が借りられるようになります。
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+depends = ['Shougo/vimproc']
+hook_source = '''
+    let g:ghcmod_use_basedir = getcwd()
+    let g:neomake_haskell_ghc_mod_args = '-g-Wall'
+'''
+
+### Haskell 用のオムニ補完を提供します。
+[[plugins]]
+repo = 'eagletmt/neco-ghc'
+hook_source = '''
+    let g:necoghc_enable_detailed_browse = 1
+    let g:haskellmode_completion_ghc = 0
+    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+'''
+
+### Hoogle 先生に相談できるようになります。
+[[plugins]]
+repo = 'Twinside/vim-hoogle'
+
+### Lint がかけられます。
+[[plugins]]
+repo = 'mpickering/hlint-refactor-vim'
+
+### Neomake コマンドが使えるようになります。
+[[plugins]]
+repo = 'neomake/neomake'
+on_cmd = ['Neomake']
+hook_source = '''
+    let g:neomake_open_list = 2
+'''
+
