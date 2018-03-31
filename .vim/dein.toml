@@ -129,9 +129,9 @@ _comment = "常時読み込み" ## {{{
 _comment = "条件付き読み込み"  ## {{{
 
     ### () とか "" とかが自動で閉じられます。
-    [[plugins]]
-    repo = 'cohama/lexima.vim'
-    on_event = ['InsertEnter']
+    # [[plugins]]
+    # repo = 'cohama/lexima.vim'
+    # on_event = ['InsertEnter']
 
     ### <C-/><C-/> でコメント切り替えできます。
     [[plugins]]
@@ -144,19 +144,19 @@ _comment = "条件付き読み込み"  ## {{{
     on_map = ['Ctrl-E']
 
     ### <Tab> だけで補完が得られます。
-    [[plugins]]
-    repo = 'ervandew/supertab'
-    on_event = ['InsertEnter']
-    on_map = ['<Tab>']
-    hook_source = '''
-    if has("gui_running")
-        imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-    else " no gui
-        if has("unix")
-            inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-        endif
-    endif
-    '''
+    # [[plugins]]
+    # repo = 'ervandew/supertab'
+    # on_event = ['InsertEnter']
+    # on_map = ['<Tab>']
+    # hook_source = '''
+    # if has("gui_running")
+    #     imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+    # else " no gui
+    #     if has("unix")
+    #         inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+    #     endif
+    # endif
+    # '''
 
     ### Vim 上でシェルを起動することができます。
     [[plugins]]
@@ -205,13 +205,20 @@ _comment = "ファイルタイプ読み込み"  ## {{{
     repo = 'cespare/vim-toml'
     on_ft = ['toml']
 
+    [[plugins]]
+    repo = 'elixir-lang/vim-elixir'
+
     ## !! Haskell 用のプラグインを動かすには stack とパッケージがいくつか必要です！
     ## http://qiita.com/igrep/items/278316669fbbd6dd124d
 
     ### Haskell ファイルの syntax プラグインです。
     [[plugins]]
-    repo = 'neovimhaskell/haskell-vim'
+    # repo = 'neovimhaskell/haskell-vim'
+    repo = 'dag/vim2hs'
     on_ft = ['haskell']
+    hook_source = '''
+        let g:haskell_conceal = 0
+    '''
 
     ### GHC-mod の力が借りられるようになります。
     [[plugins]]
@@ -242,5 +249,21 @@ _comment = "ファイルタイプ読み込み"  ## {{{
     repo = 'mpickering/hlint-refactor-vim'
     on_ft = ['haskell']
 
+    ## Rust
+    [[plugins]]
+    repo = 'rust-lang/rust.vim'
+    on_ft = ['rust']
+    hook_source = '''
+        let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+    '''
+
+    [[plugins]]
+    repo = 'racer-rust/vim-racer'
+    on_ft = ['rust']
+    hook_source = '''
+        let g:racer_cmd = '$HOME/.cargo/bin/racer'
+        let $RUST_SRC_PATH="/usr/local/src/rustc-1.5.0/src"
+        let g:racer_experimental_completer = 1
+    '''
 ## }}}
 
