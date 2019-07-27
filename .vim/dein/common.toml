@@ -112,6 +112,10 @@ _comment = "常時読み込み" ## {{{
 
 _comment = "条件付き読み込み"  ## {{{
 
+    [[plugins]]
+    repo = 'vim-jp/vimdoc-ja'
+    on_cmd = ['help']
+
     ### <C-/><C-/> でコメント切り替えできます。
     [[plugins]]
     repo = 'tomtom/tcomment_vim'
