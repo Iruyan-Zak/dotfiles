@@ -1,7 +1,7 @@
 # dotfiles
-## めっちゃ雑ですが、cloneしたらその場で `source dotfiles/README.md` を打ってください。
+## めっちゃ雑ですが、cloneしたらその場で `sh dotfiles/README.md` を実行してください。
 
-#### インストール処理（ `source dotfiles/README.md` により、以下が実行されます。）
+#### インストール処理（ `sh dotfiles/README.md` により、以下が実行されます。）
 ````
 mv dotfiles ~
 cd ~
