@@ -1,8 +1,0 @@
-function filter(){
-    cat - | perl -nle "print if ( sub{ $@ }->() );"
-}
-
-function map(){
-    cat - | perl -nle "print sub{ $@ }->();"
-}
-

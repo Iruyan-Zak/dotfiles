@@ -1,0 +1,41 @@
+### Zplugin install
+if [ ! -e ~/.zplugin/bin/zplugin.zsh ]; then
+  mkdir ~/.zplugin
+  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+
+  mkdir $ZDOTDIR/complete/my_completions
+  zplugin creinstall $ZDOTDIR/complete/my_completions  # > /dev/null  # compinitを含む
+fi
+
+### Added by Zplugin's installer
+source ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
+
+zplugin ice pick"async.zsh" src"powerlevel9k.zsh-theme"; zplugin light bhilburn/powerlevel9k
+
+zplugin load "zsh-users/zsh-autosuggestions"  # 使ったコマンドを記憶してサジェスト
+zplugin load "zsh-users/zsh-syntax-highlighting"
+zplugin load "zsh-users/zsh-completions"  # gitなどのコマンド補完
+GENCOMPL_FPATH=$ZDOTDIR/complete
+zplugin load "RobSis/zsh-completion-generator"  #gencomp
+zplugin load "Tarrasch/zsh-functional" # each map filter fold
+zplugin load "willghatch/zsh-hooks"
+zplugin load "unixorn/warhol.plugin.zsh"  # ansi
+zplugin load "mollifier/zload"  # 関数の自動再読み込み いる？
+zplugin ice src"init.sh"; zplugin load "b4b4r07/enhancd"  # cdの曖昧移動
+
+autoload -U compinit; compinit
+
+zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet OMZ::plugins/gnu-utils/gnu-utils.plugin.zsh
+zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
+zplugin snippet OMZ::plugins/z/z.plugin.zsh
+# zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+
+zload $GENCOMPL_FPATH/_*
+for f in $ZDOTDIR/snippets/*; do source $f; done

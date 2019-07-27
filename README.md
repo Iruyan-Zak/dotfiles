@@ -4,10 +4,10 @@
 ````
 mv dotfiles ~
 cd ~
-ln -s dotfiles/.zshenv .
-ln -s dotfiles/.zsh .
 ln -s dotfiles/.vimrc .
 ln -s dotfiles/.vim .
 ln -s dotfiles/.gitconfig .
+ln -s dotfiles/zshenv .zshenv
+ln -s dotfiles/zsh/snippets/99-local.zsh .zshrc
 ln -s dotfiles/gitignore_global .gitignore_global
 ````
