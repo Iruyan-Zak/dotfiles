@@ -1,7 +1,7 @@
 " タブ文字・インデント
-set tabstop=4 shiftwidth=4 softtabstop=4    " インデントは空白4つ
+set tabstop=2 shiftwidth=2 softtabstop=2    " インデントは空白2つ
 set expandtab                               " タブを空白文字に展開
-set smarttab                                " 空白4つをまとめて削除
+set smarttab                                " 空白2つをまとめて削除
 
 set autoindent
 set smartindent
