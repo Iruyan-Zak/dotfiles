@@ -9,4 +9,5 @@ ln -s dotfiles/.zsh .
 ln -s dotfiles/.vimrc .
 ln -s dotfiles/.vim .
 ln -s dotfiles/.gitconfig .
+ln -s dotfiles/gitignore_global .gitignore_global
 ````
