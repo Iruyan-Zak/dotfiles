@@ -13,8 +13,6 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
 
-zplugin ice pick"async.zsh" src"powerlevel9k.zsh-theme"; zplugin light bhilburn/powerlevel9k
-
 zplugin load "zsh-users/zsh-autosuggestions"  # 使ったコマンドを記憶してサジェスト
 zplugin load "zsh-users/zsh-syntax-highlighting"
 zplugin load "zsh-users/zsh-completions"  # gitなどのコマンド補完
@@ -24,18 +22,58 @@ zplugin load "Tarrasch/zsh-functional" # each map filter fold
 zplugin load "willghatch/zsh-hooks"
 zplugin load "unixorn/warhol.plugin.zsh"  # ansi
 zplugin load "mollifier/zload"  # 関数の自動再読み込み いる？
+zplugin load "agkozak/zsh-z"
 zplugin ice src"init.sh"; zplugin load "b4b4r07/enhancd"  # cdの曖昧移動
 
-autoload -U compinit; compinit
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin snippet OMZ::plugins/gnu-utils/gnu-utils.plugin.zsh
-zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
-zplugin snippet OMZ::plugins/z/z.plugin.zsh
+# zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
+# zplugin snippet OMZ::plugins/z/z.plugin.zsh
 # zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
 
 zload $GENCOMPL_FPATH/_*
+
+# ヒストリの設定
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+# zplugin ice pick"async.zsh" src"powerlevel9k.zsh-theme"; zplugin light bhilburn/powerlevel9k
+autoload -Uz colors
+colors
+PROMPT="%{${fg[yellow]}%}[%n] %D %*>%{${reset_color}%} %~
+%# "
+case ${OSTYPE} in
+	darwin*)
+		export CLICOLOR=1
+		alias ls='ls -G -F'
+		;;
+	linux*)
+		alias ls='ls -F --color=auto'
+		;;
+esac
+########################################
+# vcs_info
+autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+
+zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
+zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+
+function _update_vcs_info_msg() {
+LANG=en_US.UTF-8 vcs_info
+RPROMPT="${vcs_info_msg_0_}"
+}
+add-zsh-hook precmd _update_vcs_info_msg
+
+
+########################################
+
 for f in $ZDOTDIR/snippets/*; do source $f; done
+
