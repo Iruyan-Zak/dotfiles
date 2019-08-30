@@ -2,6 +2,8 @@
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:dein_dir = s:cache_home . '/dein'
 
+let s:toml_file_dir = '~/.config/nvim/fragments/dein/'
+
 " dein.vim がなければ github から落としてくる
 if &runtimepath !~# '/dein.vim'
   let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -17,9 +19,9 @@ let g:dein#install_message_type = 'none'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  call dein#load_toml('~/dotfiles/vim/dein/common.toml')
+  call dein#load_toml(s:toml_file_dir . 'common.toml')
   " call dein#load_toml('~/.vim/dein/tools.toml')
-  " call dein#load_toml('~/.vim/dein/haskell.toml', { 'on_ft': 'haskell' })
+  call dein#load_toml(s:toml_file_dir . 'haskell.toml', { 'on_ft': 'haskell' })
 
   call dein#end()
   call dein#save_state()

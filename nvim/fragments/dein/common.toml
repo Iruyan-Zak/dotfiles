@@ -1,0 +1,139 @@
+# パッケージリスト
+
+_comment = "常時読み込み" ## {{{
+
+    ### dein.vim です。
+    [[plugins]]
+    repo = 'Shougo/dein.vim'
+
+    ### 下部ステータスラインに色がつきます。
+    [[plugins]]
+    repo = 'itchyny/lightline.vim'
+    depends = ['fugitive']
+    hook_add = '''
+        let g:lightline = {
+            \ 'mode_map': {'c': 'NORMAL'},
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+            \ },
+            \ 'component_function': {
+            \   'modified': 'LightlineModified',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'filetype': 'LightlineFiletype',
+            \   'fileencoding': 'LightlineFileencoding',
+            \   'mode': 'LightlineMode'
+            \ }
+            \ }
+
+            function! LightlineModified()
+                return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+            endfunction
+
+            function! LightlineReadonly()
+                return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+            endfunction
+
+            function! LightlineFilename()
+                return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                    \    &ft == 'unite' ? unite#get_status_string() :
+                    \    &ft == 'vimshell' ? vimshell#get_status_string() :
+                    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                    \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+            endfunction
+
+            function! LightlineFugitive()
+                if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                    return fugitive#head()
+                else
+                    return ''
+                endif
+            endfunction
+
+            function! LightlineFileformat()
+                return winwidth(0) > 70 ? &fileformat : ''
+            endfunction
+
+            function! LightlineFiletype()
+                return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+            endfunction
+
+            function! LightlineFileencoding()
+                return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+            endfunction
+
+            function! LightlineMode()
+                return winwidth(0) > 60 ? lightline#mode() : ''
+        endfunction
+    '''
+
+    ### 文末の空白を赤く表示します。
+    [[plugins]]
+    repo = 'bronson/vim-trailing-whitespace'
+
+    ### インデントが縞模様で見やすくなります。
+    [[plugins]]
+    repo = 'nathanaelkane/vim-indent-guides'
+    hook_add = '''
+        let g:indent_guides_enable_on_vim_startup=1
+        " ガイドをスタートするインデントの量
+        let g:indent_guides_start_level=2
+        " 自動カラー無効
+        let g:indent_guides_auto_colors=0
+        " 奇数番目のインデントの色
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+        " 偶数番目のインデントの色
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+        " ガイドの幅
+        let g:indent_guides_guide_size = 1
+    '''
+
+    ### Vim から Git を便利に触れるようになります。 lightline が少しリッチになります。
+    [[plugins]]
+    repo = 'tpope/vim-fugitive'
+
+    ### キーバインドを便利にまとめる Submode が使えるようになります。
+    ### 'binding.vimrc' 内の "submode#" を含むバインディングに影響します。
+    [[plugins]]
+    repo = 'kana/vim-submode'
+
+    ### Yank とか Delete の範囲指定を {op}ai で指定できるようになります。
+    [[plugins]]
+    repo = 'michaeljsmith/vim-indent-object'
+
+    ### INSERT モードでの OS キー貼り付けがうまくいきます。
+    [[plugins]]
+    repo = 'ConradIrwin/vim-bracketed-paste'
+
+## }}}
+
+_comment = "条件付き読み込み"  ## {{{
+
+    [[plugins]]
+    repo = 'vim-jp/vimdoc-ja'
+    on_cmd = ['help']
+
+    ### <C-/><C-/> でコメント切り替えできます。
+    [[plugins]]
+    repo = 'tomtom/tcomment_vim'
+    on_map = ['<C-_><C-_>']
+
+    ### 便利なバッファクローズ機能が提供されます。
+    [[plugins]]
+    repo = 'moll/vim-bbye'
+    on_cmd = ['Bdelete']
+
+    ### <m> から高速なカーソル移動ができます。
+    [[plugins]]
+    repo = 'easymotion/vim-easymotion'
+    hook_add = '''
+        let g:EasyMotion_do_mapping = 0
+        let g:EasyMotion_enter_jump_first = 1
+    '''
+    on_map = ['<Plug>(easymotion-s2)', '<Plug>(easymotion-sn)', '<Plug>(easymotion-tn)']
+
+## }}}
+

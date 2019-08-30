@@ -7,8 +7,15 @@ mv dotfiles ~
 cd ~
 ln -s dotfiles/zshenv .zshenv
 ln -s dotfiles/zsh/snippets/99-local.zsh .zshrc
-ln -s dotfiles/vimrc .vimrc
-ln -s dotfiles/vim .vim
+
+# vim用の設定
+# ln -s dotfiles/vimrc .vimrc
+# ln -s dotfiles/vim .vim
+
+# nvim用の設定
+# mkdir -p $HOME/.config/nvim
+ln -s ~/dotfiles/nvim .config/
+
 ln -s dotfiles/gitconfig .gitconfig
 ln -s dotfiles/gitignore_global .gitignore_global
 ````
