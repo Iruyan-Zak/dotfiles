@@ -26,6 +26,7 @@ zplugin load "agkozak/zsh-z"
 zplugin ice src"init.sh"; zplugin load "b4b4r07/enhancd"  # cdの曖昧移動
 
 autoload -U compinit; compinit
+autoload -U bashcompinit; bashcompinit
 
 zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
