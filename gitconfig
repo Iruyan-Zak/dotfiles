@@ -1,80 +1,95 @@
 [core]
-	editor = vim
-	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	pager = less
-	excludesfile = ~/.gitignore_global
+  editor = vim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  pager = less
+  excludesfile = ~/.gitignore_global
 [web]
-	browser = google-chrome
+  browser = google-chrome
 [push]
-	default = current
+  default = current
 [color]
-	ui = auto
+  ui = auto
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [pager]
-	log = less
-	show = less
-	diff = less
+  log = less
+  show = less
+  diff = less
 [alias]
-    a = add
-	aa = add .
-    b = branch
-    br = branch -r
-    c = commit
-    cm = commit -m
-    co = checkout
-    cob = checkout -b
-    cp = cherry-pick
-    cpab = cherry-pick --abort
-    cpco = cherry-pick --continue
-	d = diff
-	dca = diff --cached
-    f = fetch
-    l = log
-    m = merge
-    plo = pull origin
-    plom = pull origin master
-    pop = stash pop
-    psode = push --delete origin
-    pso = push origin
-    psof = push -f origin
-	r = rebase
-	ri = rebase -i
-	rco = rebase --continue
-	rab = rebase --abort
-	rmrca = rm -r --cached
-    s = status
-	st = stash
+  a = add
+  aa = add .
 
-	amend = commit --amend -C HEAD
-	reward = commit --amend -c HEAD
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	logg = log --stat --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cr %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
-    mergelog = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
-    history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
-    unmerged = !git --no-pager diff --name-only --diff-filter=U
-    sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
-    discard-local = !git fetch origin && git reset --hard origin/master
-    clone-rev = clone --depth=1 -b
-	lbd = !for i in {1..$1}\
-		do\
-		git diff HEAD~ HEAD\
-		git checkout HEAD~\
-		done
+  b = branch
+  br = branch -r
+  bM = branch -M
 
-	k = !gitk&
+  c = commit
+  cm = commit -m
+  amend = commit --amend -C HEAD
+  reward = commit --amend -c HEAD
+
+  co = checkout
+  cob = checkout -b
+  coB = checkout -B
+
+  cp = cherry-pick
+  cpab = cherry-pick --abort
+  cpco = cherry-pick --continue
+
+  clone = clone --recursive
+  cl = clone --recursive
+  clrev = clone --depth=1 --recursive -b
+
+  d = diff
+  dca = diff --cached
+
+  f = fetch
+
+  l = log
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  logg = log --stat --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cr %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
+  mergelog = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
+  history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
+  unmerged = !git --no-pager diff --name-only --diff-filter=U
+
+  m = merge
+
+  plo = pull origin
+  plom = pull origin master
+
+  psode = push --delete origin
+  pso = push origin
+  psof = push -f origin
+
+  r = rebase
+  ri = rebase -i
+  rco = rebase --continue
+  rab = rebase --abort
+
+  rmrca = rm -r --cached
+
+  s = status
+  ss = status -s
+  st = stash
+  pop = stash pop
+
+  discard-local = !git fetch origin && git reset --hard origin/master
+
+[user]
+  email = yuri.kazuna@gmail.com
+  name = Iruyan_ZAK
