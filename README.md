@@ -13,7 +13,7 @@ ln -s dotfiles/zsh/snippets/99-local.zsh .zshrc
 # ln -s dotfiles/vim .vim
 
 # nvim用の設定
-# mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config
 ln -s ~/dotfiles/nvim .config/
 
 ln -s dotfiles/gitconfig .gitconfig
