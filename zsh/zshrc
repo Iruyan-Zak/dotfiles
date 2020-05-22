@@ -4,8 +4,6 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 autoload -Uz colors; colors
-PROMPT="%{${fg[green]}%}[%n] %D %*>%{${reset_color}%} %~
-%# "
 case ${OSTYPE} in
 	darwin*)
 		export CLICOLOR=1
@@ -21,15 +19,27 @@ esac
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
-zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{lime}"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}"
+zstyle ':vcs_info:*' formats '%F{green}%c%u[%s]-<%b>%f'
+zstyle ':vcs_info:*' actionformats '%F{red}[%s]-<%b|%a>%f'
 
-function _update_vcs_info_msg() {
-LANG=en_US.UTF-8 vcs_info
-RPROMPT="${vcs_info_msg_0_}"
+precmd() {
+  LANG=en_US.UTF-8 vcs_info
+  local left="%F{green}* %D %*>%{${reset_color}%} %~"
+  local right="${vcs_info_msg_0_}"
+
+  local invisible='%([BSUbfksu]|([FK]|){*})'
+  local leftwidth=${#${(S%%)left//$~invisible/}}
+  local rightwidth=${#${(S%%)right//$~invisible/}}
+  local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
+
+  print -P $left${(r:$padwidth:: :)}$right
 }
-add-zsh-hook precmd _update_vcs_info_msg
 
+PROMPT="%# "
 
 ########################################
 
