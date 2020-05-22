@@ -51,6 +51,8 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
+# rehashの自動化
+zstyle ":completion:*:commands" rehash 1
 
 # キーバインド
 

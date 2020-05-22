@@ -5,18 +5,19 @@
 ````
 mv dotfiles ~
 cd ~
-ln -s dotfiles/zshenv .zshenv
-ln -s dotfiles/zsh/snippets/99-local.zsh .zshrc
+mkdir -p ~/.config/zsh
+ln -s ~/dotfiles/zshenv ~/.zshenv
+ln -s ~/dotfiles/zsh/.zshrc ~/.config/zsh
+ln -s ~/dotfiles/zsh/snippets/99-local.zsh ~/.zshrc
 
 # vim用の設定
 # ln -s dotfiles/vimrc .vimrc
 # ln -s dotfiles/vim .vim
 
 # nvim用の設定
-mkdir -p $HOME/.config
-ln -s ~/dotfiles/nvim .config/
+ln -s ~/dotfiles/nvim ~/.config/
 
-ln -s dotfiles/gitconfig .gitconfig
-ln -s dotfiles/gitignore_global .gitignore_global
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
+ln -s ~/dotfiles/gitignore_global ~/.gitignore_global
 ````
 

@@ -43,5 +43,9 @@ PROMPT="%# "
 
 ########################################
 
-for f in $ZDOTDIR/snippets/*; do source $f; done
+for f in $CONFIG_DIR/snippets/*; do source $f; done
+
+
+autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 

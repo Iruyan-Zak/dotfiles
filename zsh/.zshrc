@@ -1,1 +1,1 @@
-source $ZDOTDIR/zshrc
+source $CONFIG_DIR/zshrc
