@@ -5,16 +5,24 @@
 ````
 mv dotfiles ~
 cd ~
-mkdir -p ~/.config/zsh
-ln -s ~/dotfiles/zshenv ~/.zshenv
-ln -s ~/dotfiles/zsh/.zshrc ~/.config/zsh
 ln -s ~/dotfiles/zsh/snippets/99-local.zsh ~/.zshrc
+
+cat << 'HERE' > ~/.zshrc
+if [ -z $ZSH_LOADING ]; then
+  ZSH_LOADING=1
+
+  export CONFIG_DIR=~/dotfiles/zsh
+  source $CONFIG_DIR/zshrc
+  return
+fi
+HERE
 
 # vim用の設定
 # ln -s dotfiles/vimrc .vimrc
 # ln -s dotfiles/vim .vim
 
 # nvim用の設定
+mkdir -p ~/.config
 ln -s ~/dotfiles/nvim ~/.config/
 
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
