@@ -27,8 +27,10 @@ zstyle ':vcs_info:*' formats '%F{green}%c%u[%s]-<%b>%f'
 zstyle ':vcs_info:*' actionformats '%F{red}[%s]-<%b|%a>%f'
 
 precmd() {
+  ES=$?
+
   LANG=en_US.UTF-8 vcs_info
-  local left="%F{green}* %D %*>%{${reset_color}%} %~"
+  local left="%($ES?,[%M],%F{yellow}($ES%))%F{green} %D %*>%{${reset_color}%} %~"
   local right="${vcs_info_msg_0_}"
 
   local invisible='%([BSUbfksu]|([FK]|){*})'
@@ -37,6 +39,7 @@ precmd() {
   local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
 
   print -P $left${(r:$padwidth:: :)}$right
+  sh <<< "exit $ES"
 }
 
 PROMPT="%# "
