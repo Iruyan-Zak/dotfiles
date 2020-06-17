@@ -7,7 +7,7 @@ mv dotfiles ~
 cd ~
 ln -s ~/dotfiles/zsh/snippets/99-local.zsh ~/.zshrc
 
-cat << 'HERE' > ~/.zshrc
+cat - ~/.zshrc << 'HERE' | tee ~/.zshrc >/dev/null
 if [ -z $ZSH_LOADING ]; then
   ZSH_LOADING=1
 
