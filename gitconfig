@@ -52,6 +52,7 @@
 
   clone = clone --recursive
   cl = clone --recursive
+  cl1 = clone --depth=1
   clrev = clone --depth=1 --recursive -b
 
   d = diff
