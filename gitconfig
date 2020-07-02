@@ -91,6 +91,3 @@
 
   discard-local = !git fetch origin && git reset --hard origin/master
 
-[user]
-  email = yuri.kazuna@gmail.com
-  name = Iruyan_ZAK
