@@ -27,5 +27,8 @@ ln -s ~/dotfiles/nvim ~/.config/
 
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/gitignore_global ~/.gitignore_global
+
+# tig
+ln -s ~/dotfiles/tigrc ~/.tigrc
 ````
 
