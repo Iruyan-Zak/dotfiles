@@ -100,3 +100,12 @@ nnoremap tp :<C-u>bp<CR>
 nnoremap tq :<C-u>bdelete<CR>
 nnoremap tc :<C-u>Bdelete<CR>
 
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+inoremap <C-w> <C-o>w
+inoremap <C-b> <C-o>b
+inoremap <C-d> <Del>
+inoremap <C-h> <BS>
+inoremap <C-S-w> <C-o>W
+inoremap <C-S-b> <C-o>B
+

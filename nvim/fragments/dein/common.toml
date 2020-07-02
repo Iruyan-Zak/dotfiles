@@ -95,6 +95,26 @@ _comment = "常時読み込み" ## {{{
     [[plugins]]
     repo = 'tpope/vim-fugitive'
 
+    ### Gitの差分が分かりやすくなります。
+    [[plugins]]
+    repo = 'airblade/vim-gitgutter'
+    hook_add = '''
+      set signcolumn=yes
+      let g:gitgutter_async = 1
+      let g:gitgutter_sign_modified = 'rw'
+      highlight GitGutterAdd ctermfg=green
+      highlight GitGutterChange ctermfg=yellow
+      highlight GitGutterDelete ctermfg=red
+      highlight GitGutterChangeDelete ctermfg=yellow
+    '''
+
+    ### 対応するカッコが色分けされます。
+    [[plugins]]
+    repo = 'luochen1990/rainbow'
+    hook_add = '''
+      let g:rainbow_active = 1
+    '''
+
     ### キーバインドを便利にまとめる Submode が使えるようになります。
     ### 'binding.vimrc' 内の "submode#" を含むバインディングに影響します。
     [[plugins]]
@@ -107,6 +127,30 @@ _comment = "常時読み込み" ## {{{
     ### INSERT モードでの OS キー貼り付けがうまくいきます。
     [[plugins]]
     repo = 'ConradIrwin/vim-bracketed-paste'
+
+    ### LSP
+    [[plugins]]
+    repo = 'neoclide/coc.nvim'
+    rev = 'release'
+    build = '''
+      git checkout release
+    '''
+    hook_add = '''
+      inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+      function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+      nmap <silent> gd <Plug>(coc-definition)
+      nmap <silent> gy <Plug>(coc-type-definition)
+      nmap <silent> gi <Plug>(coc-implementation)
+      nmap <silent> gr <Plug>(coc-references)
+    '''
 
 ## }}}
 
