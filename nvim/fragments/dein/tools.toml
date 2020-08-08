@@ -1,17 +1,5 @@
-### いろんなプラグインが非同期実行に対応します。
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-
 ### <C-E> でファイラが開けます。
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 on_map = ['Ctrl-E']
-
-### Vim 上でシェルを起動することができます。
-[[plugins]]
-repo = 'Shougo/vimshell'
-om_cmd = ['VimShell']
-depends = ['Shougo/vimproc']
-
 

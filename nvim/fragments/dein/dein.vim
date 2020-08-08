@@ -20,7 +20,7 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   call dein#load_toml(s:toml_file_dir . 'common.toml')
-  " call dein#load_toml('~/.vim/dein/tools.toml')
+  call dein#load_toml(s:toml_file_dir . 'tools.toml')
   call dein#load_toml(s:toml_file_dir . 'haskell.toml', { 'on_ft': 'haskell' })
 
   call dein#end()
