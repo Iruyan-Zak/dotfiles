@@ -76,14 +76,14 @@ nnoremap tr <C-w>r
 nnoremap to <C-w>_<C-w>|
 nnoremap tO <C-w>=
 nnoremap t= <C-w>=
-call submode#enter_with('bufmove', 'n', '', 't>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 't<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 't+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 't-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+" call submode#enter_with('bufmove', 'n', '', 't>', '<C-w>>')
+" call submode#enter_with('bufmove', 'n', '', 't<', '<C-w><')
+" call submode#enter_with('bufmove', 'n', '', 't+', '<C-w>+')
+" call submode#enter_with('bufmove', 'n', '', 't-', '<C-w>-')
+" call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+" call submode#map('bufmove', 'n', '', '<', '<C-w><')
+" call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+" call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 " タブ操作:
 nnoremap tt :<C-u>tabnew<CR>

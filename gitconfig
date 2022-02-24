@@ -2,7 +2,6 @@
   editor = vim
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   pager = less
-  excludesfile = ~/.gitignore_global
 [web]
   browser = google-chrome
 [push]
@@ -35,7 +34,7 @@
 
   b = branch
   br = branch -r
-  bM = branch -M
+  bm = branch -m
 
   c = commit
   cm = commit -m
@@ -58,17 +57,18 @@
   d = diff
   dca = diff --cached
 
-  f = fetch
+  f = fetch --prune
+
+  g = grep -n
+  gN = grep -n --name-only
 
   l = log
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  logg = log --stat --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cr %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
-  mergelog = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
-  history = log --graph --date=short --decorate=short --pretty=format:'%C(yellow)%h %Cgreen%cd %Cblue%cn%Cred%d %Creset%s'
-  unmerged = !git --no-pager diff --name-only --diff-filter=U
+  lg = log --oneline --graph --decorate --all
+  lgg = log --graph --date=iso-local --format="%x09%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)"
 
   m = merge
+  mab = merge --abort
+  mco = merge --continue
 
   plo = pull origin
   plom = pull origin master
@@ -82,10 +82,14 @@
   rco = rebase --continue
   rab = rebase --abort
 
+  re = reset
+  re1 = reset HEAD~
+
   rmrca = rm -r --cached
 
   s = status
   ss = status -s
+
   st = stash
   pop = stash pop
 
